@@ -7,7 +7,7 @@ export const profile = {
   phone: '04 5267 0239',
   linkedin: 'https://www.linkedin.com/in/samantha-oh-a1b0aa252', 
   github: 'https://github.com/Samanthaaaa0', 
-  tagline: 'Full-stack developer & coding tutor',
+  tagline: 'Coding tutor',
   summary:
     "Computer Science (Honours) graduate from Monash University with experience in software development, optimisation and technical education. Comfortable with Python, Java, JavaScript, SQL and full-stack development, with hands-on experience building web and mobile applications. Currently working as a coding tutor, teaching programming and problem-solving while preparing students for coding competitions. Curious, practical and keen to grow through real-world technology roles.",
   seeking:
@@ -94,6 +94,7 @@ export type Project = {
   blurb?: string
   github?: string
   site?: ProjectLink
+  thesis?: string
   caseStudy?: CaseStudySection[]
   proof?: ProofOfWork
   // Set to render a small interactive illustrative diagram in the popup
@@ -119,7 +120,8 @@ export const projects: Project[] = [
     description:
       'Researched optimisation approaches for the PIBT pathfinding algorithm in multi-agent systems, evaluating performance across different scenarios.',
     github: 'https://github.com/Samanthaaaa0/pathfinding_for_games',
-      bullets: [
+    thesis: '/thesis/PIBT-Thesis.pdf',
+    bullets: [
       'Investigated improvements to the PIBT algorithm for multi-agent pathfinding.',
       'Benchmarked algorithm performance across varied simulation scenarios.',
     ],
@@ -142,8 +144,6 @@ export const projects: Project[] = [
           'Benchmarked algorithm performance across varied simulation scenarios.',
         ],
       },
-      // TODO: once the thesis PDF is shared, expand this with a Methodology
-      // and a Results & Findings section using the real abstract/data.
     ],
   },
   {

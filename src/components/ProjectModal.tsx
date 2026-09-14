@@ -38,6 +38,7 @@ export default function ProjectModal({ project, onClose }: Props) {
   const tech = project.techList ?? project.stack.split('·').map((s) => s.trim()).filter(Boolean)
   const blurb = project.blurb ?? project.description
   const hasGithub = Boolean(project.github)
+  const hasThesis = Boolean(project.thesis)
   const hasSite = Boolean(project.site)
   const hasProof = Boolean(project.proof && project.proof.images.length > 0)
   const proofLabel = String((project.caseStudy?.length ?? 0) + 1).padStart(2, '0')
@@ -132,6 +133,17 @@ export default function ProjectModal({ project, onClose }: Props) {
                   className="flex items-center gap-2 rounded-full border border-turq/50 px-5 py-2.5 font-body text-sm font-semibold text-turq transition-colors hover:bg-turq hover:text-ink"
                 >
                   <ExternalLink size={15} /> GitHub
+                </a>
+              )}
+
+              {hasThesis && (
+                <a
+                  href={project.thesis}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 rounded-full border border-turq/50 px-5 py-2.5 font-body text-sm font-semibold text-turq transition-colors hover:bg-turq hover:text-ink"
+                >
+                  <ExternalLink size={15} /> Read Thesis
                 </a>
               )}
 
