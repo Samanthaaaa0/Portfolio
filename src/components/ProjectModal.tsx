@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { X, ExternalLink, Ban, ZoomIn } from 'lucide-react'
 import type { Project, ProjectImage } from '../data/resumeData'
 import ScrollFadeSection from './ScrollFadeSection'
-import PathfindingDiagram from './PathfindingDiagram'
 
 type Props = {
   project: Project
@@ -152,19 +151,43 @@ export default function ProjectModal({ project, onClose }: Props) {
               )}
             </div>
 
-            {/* interactive illustrative diagram */}
-            {project.interactiveDiagram === 'pathfinding-grid' && (
-              <ScrollFadeSection root={scrollRef} className="mt-9 border-t border-turq/15 pt-8">
-                <PathfindingDiagram />
+            {project.demoGifs?.length ? (
+              <ScrollFadeSection
+                root={scrollRef}
+                className="mt-9 border-t border-turq/15 pt-8"
+              >
+                <div className="flex items-baseline gap-3">
+                  <span className="font-pixel text-lg text-turq">◆</span>
+
+                  <h4 className="font-display text-lg font-semibold text-white">
+                    Simulation Demonstration
+                  </h4>
+                </div>
+
+                <div className="mt-5 grid grid-cols-2 gap-4">
+                  {project.demoGifs.map((demo) => (
+                    <figure key={demo.src}>
+                      <img
+                        src={demo.src}
+                        alt={demo.title}
+                        loading="lazy"
+                        className="w-full rounded-xl border border-turq/25 bg-panel2"
+                      />
+
+                      <figcaption className="mt-2 text-center font-body text-xs text-grey-dim">
+                        <span className="text-turq">{demo.title}</span>
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
               </ScrollFadeSection>
-            )}
+            ) : null}
 
             {/* deep-dive case study sections */}
             {project.caseStudy?.map((section, i) => (
               <ScrollFadeSection
                 key={section.label}
                 root={scrollRef}
-                className={`${i === 0 && project.interactiveDiagram !== 'pathfinding-grid' ? 'mt-9 border-t border-turq/15 pt-8' : 'mt-7'}`}
               >
                 <div className="flex items-baseline gap-3">
                   <span className="font-pixel text-lg text-turq">{section.label}</span>
@@ -172,7 +195,9 @@ export default function ProjectModal({ project, onClose }: Props) {
                 </div>
 
                 {section.paragraph && (
-                  <p className="mt-2.5 font-body text-sm leading-relaxed text-grey sm:text-[15px]">{section.paragraph}</p>
+                  <p className="mt-2.5 whitespace-pre-line font-body text-sm leading-relaxed text-grey sm:text-[15px]">
+                    {section.paragraph}
+                  </p>
                 )}
 
                 {section.bullets && (

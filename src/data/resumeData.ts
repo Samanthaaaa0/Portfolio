@@ -81,6 +81,12 @@ export type ProofOfWork = {
   images: ProjectImage[]
 }
 
+export type DemoGif = {
+  src: string
+  title: string
+  caption: string
+}
+
 export type Project = {
   id: string
   title: string
@@ -95,10 +101,9 @@ export type Project = {
   github?: string
   site?: ProjectLink
   thesis?: string
+  demoGifs?: DemoGif[]
   caseStudy?: CaseStudySection[]
   proof?: ProofOfWork
-  // Set to render a small interactive illustrative diagram in the popup
-  interactiveDiagram?: 'pathfinding-grid'
 }
 
 export const projects: Project[] = [
@@ -118,7 +123,7 @@ export const projects: Project[] = [
     period: '2025',
     stack: 'Python · Algorithms Research',
     description:
-      'Researched optimisation approaches for the PIBT pathfinding algorithm in multi-agent systems, evaluating performance across different scenarios.',
+      'Extended the PIBT multi-agent pathfinding algorithm with deadlock and livelock detection, Push-and-Swap recovery, and corridor-based coordination mechanisms, then evaluated the approach through simulation.',
     github: 'https://github.com/Samanthaaaa0/pathfinding_for_games',
     thesis: '/thesis/PIBT-Thesis.pdf',
     bullets: [
@@ -127,22 +132,46 @@ export const projects: Project[] = [
     ],
     techList: ['Python', 'Algorithms', 'Multi-Agent Systems', 'Simulation & Benchmarking'],
     blurb:
-      'Research into optimising PIBT, a fast rule-based algorithm for coordinating many agents moving at once without collisions.',
-    interactiveDiagram: 'pathfinding-grid',
+      'An algorithm research project exploring how PIBT can recover from complex multi-agent deadlocks and livelocks while preserving its decentralised coordination model.',
+    demoGifs: [
+      {
+        src: '/demo/image1.gif',
+        title: 'Deadlock Resolution I',
+        caption: 'Demonstration of the extended PIBT algorithm resolving a multi-agent deadlock.',
+      },
+      {
+        src: '/demo/image2.gif',
+        title: 'Deadlock Resolution II',
+        caption: 'Another simulation demonstrating deadlock resolution in a constrained environment.',
+      },
+    ],
     caseStudy: [
       {
         label: '01',
         heading: 'Overview',
         paragraph:
-          'PIBT (Priority Inheritance with Backtracking) is a lightweight, rule-based algorithm used to coordinate movement for many agents at once in multi-agent pathfinding (MAPF) — the kind of problem behind automated warehouses, simulated crowds and robot fleets. This project explored ways to optimise it further.',
+          'PIBT (Priority Inheritance with Backtracking) is a decentralised algorithm for Multi-Agent Path Finding (MAPF), where multiple agents must navigate a shared environment without collisions. This project investigated how PIBT could be extended to better handle difficult coordination scenarios such as deadlocks and livelocks, where agents become trapped in cyclic patterns and stop making meaningful progress. \n\n \
+          The research focused on improving coordination while preserving PIBT\'s lightweight, decentralised design rather than replacing the underlying algorithm.',
       },
       {
         label: '02',
         heading: 'Approach',
+        paragraph:
+          'The project kept PIBT as the core coordination algorithm and introduced additional recovery mechanisms that activate when PIBT cannot resolve a conflict.The main extensions were:',
         bullets: [
-          'Investigated improvements to the PIBT algorithm for multi-agent pathfinding.',
-          'Benchmarked algorithm performance across varied simulation scenarios.',
+          'Deadlock detection: Identified cyclic dependencies when an agent\'s intended movement was blocked and PIBT\'s backtracking could not find a valid alternative.',
+          'Push-and-Swap recovery: Integrated push and swap operations to break circular dependencies and free blocked agents.',
+          'Corridor-based swapping: Extended the swap mechanism for larger deadlocks by temporarily creating space and sequentially moving agents through a corridor.',
+          'Livelock detection: Developed a push-counter matrix to identify repeated cyclic behaviour and distinguish persistent livelocks from temporary congestion.',
+          'Priority freezing: Temporarily fixed the priorities of agents involved in a livelock so the resulting dependency structure could be analysed and resolved.',
+          'State restoration: Implemented a restoration mechanism to return agents to consistent configurations after push-and-swap operations.',
         ],
+      },
+      {
+        label: '03',
+        heading: 'Methodology',
+        paragraph:
+        'The algorithm was implemented and evaluated in Python using controlled 2D grid-based simulations. The experimental environment consisted of homogeneous agents moving synchronously through static environments, with each agent occupying one grid cell and being able to move to a neighbouring cell or remain stationary. PIBT was used as the baseline, with the proposed extensions integrated into its existing coordination loop. Deadlocks were detected by analysing blocking relationships between agents, while livelocks were identified using a push-counter matrix that tracked repeated priority-inheritance interactions between agents.\n\nWhen a deadlock was detected, the system attempted Push-and-Swap recovery. For larger multi-agent cycles, a corridor-based swap mechanism was used to sequentially reposition agents and break the circular dependency. Livelocks were handled by temporarily freezing the priorities of the affected agents and converting unresolved cyclic behaviour into a deadlock state that could be processed by the same recovery mechanisms.\n\nThe implementation used Python to support rapid prototyping and experimentation with different algorithmic behaviours and detection thresholds. Simulation-based testing was then used to evaluate the behaviour and performance of the extended algorithm across different grid configurations and multi-agent scenarios.'
       },
     ],
   },
