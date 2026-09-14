@@ -188,11 +188,13 @@ export const projects: Project[] = [
       'Full-stack campus restaurant discovery platform with reviews, vendor accounts, JWT + OTP authentication, and S3-hosted images.',
     site: { url: '', status: 'offline' }, // demo no longer live — shown as an inactive state in the popup
     proof: {
-      note: "The live demo and repo aren't publicly available anymore, so here's a look at the interface instead.",
+      note: 'The original deployment and repository are no longer publicly available. These screenshots show selected interfaces from the completed project.',
       images: [
-        { src: '/projects/m-eats/shot-1.svg', alt: 'M-Eats restaurant discovery page', caption: 'Restaurant discovery' },
-        { src: '/projects/m-eats/shot-2.svg', alt: 'M-Eats restaurant detail and reviews page', caption: 'Restaurant details & reviews' },
-        { src: '/projects/m-eats/shot-3.svg', alt: 'M-Eats vendor dashboard', caption: 'Vendor dashboard' },
+        { src: '/public/meats/home.png', alt: 'M-Eats restaurant home page', caption: 'Restaurant Home' },
+        { src: '/public/meats/restaurants.png', alt: 'M-Eats restaurants list', caption: 'Restaurant List' },
+        { src: '/public/meats/filter.png', alt: 'M-eats restaurants filter', caption: 'Restaurant Filtering' },
+        { src: '/public/meats/review.png', alt: 'M-Eats review page', caption: 'Review Submission' },
+        { src: '/public/meats/vendorpage.png', alt: 'M-eats Vendor home page', caption: 'Vendor Home' },
       ],
     },
     caseStudy: [

@@ -95,6 +95,37 @@ input:focus-visible {
   animation: marquee-scroll 22s linear infinite;
 }
 
+.proof-carousel {
+  display: flex;
+  gap: 0.75rem;
+  width: max-content;
+  animation: proof-scroll 20s linear infinite;
+}
+
+.proof-carousel:hover {
+  animation-play-state: paused;
+}
+
+.proof-carousel-item {
+  width: 16rem;
+}
+
+@media (min-width: 640px) {
+  .proof-carousel-item {
+    width: 20rem;
+  }
+}
+
+@keyframes proof-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 0.375rem));
+  }
+}
+
 @keyframes marquee-scroll {
   0% {
     transform: translateX(0%);

@@ -223,25 +223,33 @@ export default function ProjectModal({ project, onClose }: Props) {
                 {project.proof!.note && (
                   <p className="mt-2.5 font-body text-sm leading-relaxed text-grey sm:text-[15px]">{project.proof!.note}</p>
                 )}
-                <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                  {project.proof!.images.map((img) => (
-                    <button
-                      key={img.src}
-                      onClick={() => setLightbox(img)}
-                      aria-label={`Enlarge: ${img.caption ?? img.alt}`}
-                      className="group relative overflow-hidden rounded-lg border border-turq/25 bg-panel2 transition-transform hover:-translate-y-0.5"
-                    >
-                      <img src={img.src} alt={img.alt} className="aspect-[4/3] w-full object-cover" />
-                      <span className="pointer-events-none absolute inset-0 flex items-center justify-center bg-ink/0 opacity-0 transition-opacity group-hover:bg-ink/40 group-hover:opacity-100">
-                        <ZoomIn size={18} className="text-turq" />
-                      </span>
-                      {img.caption && (
-                        <span className="block truncate px-2 py-1.5 text-left font-body text-[11px] text-grey">
-                          {img.caption}
+                <div className="mt-4 overflow-hidden">
+                  <div className="proof-carousel">
+                    {[...project.proof!.images, ...project.proof!.images].map((img, index) => (
+                      <button
+                        key={`${img.src}-${index}`}
+                        onClick={() => setLightbox(img)}
+                        aria-label={`Enlarge: ${img.caption ?? img.alt}`}
+                        className="proof-carousel-item group relative shrink-0 overflow-hidden rounded-lg border border-turq/25 bg-panel2"
+                      >
+                        <img
+                          src={img.src}
+                          alt={img.alt}
+                          className="h-44 w-64 object-cover sm:h-52 sm:w-80"
+                        />
+
+                        <span className="pointer-events-none absolute inset-0 flex items-center justify-center bg-ink/0 opacity-0 transition-opacity group-hover:bg-ink/40 group-hover:opacity-100">
+                          <ZoomIn size={18} className="text-turq" />
                         </span>
-                      )}
-                    </button>
-                  ))}
+
+                        {img.caption && (
+                          <span className="block truncate px-2 py-1.5 text-left font-body text-[11px] text-grey">
+                            {img.caption}
+                          </span>
+                        )}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </ScrollFadeSection>
             )}
