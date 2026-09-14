@@ -135,12 +135,12 @@ export const projects: Project[] = [
       'An algorithm research project exploring how PIBT can recover from complex multi-agent deadlocks and livelocks while preserving its decentralised coordination model.',
     demoGifs: [
       {
-        src: '/demo/image1.gif',
+        src: `${import.meta.env.BASE_URL}/demo/image1.gif`,
         title: 'Deadlock Resolution I',
         caption: 'Demonstration of the extended PIBT algorithm resolving a multi-agent deadlock.',
       },
       {
-        src: '/demo/image2.gif',
+        src: `${import.meta.env.BASE_URL}/demo/image2.gif`,
         title: 'Deadlock Resolution II',
         caption: 'Another simulation demonstrating deadlock resolution in a constrained environment.',
       },
@@ -190,11 +190,31 @@ export const projects: Project[] = [
     proof: {
       note: 'The original deployment and repository are no longer publicly available. These screenshots show selected interfaces from the completed project.',
       images: [
-        { src: '/public/meats/home.png', alt: 'M-Eats restaurant home page', caption: 'Restaurant Home' },
-        { src: '/public/meats/restaurants.png', alt: 'M-Eats restaurants list', caption: 'Restaurant List' },
-        { src: '/public/meats/filter.png', alt: 'M-eats restaurants filter', caption: 'Restaurant Filtering' },
-        { src: '/public/meats/review.png', alt: 'M-Eats review page', caption: 'Review Submission' },
-        { src: '/public/meats/vendorpage.png', alt: 'M-eats Vendor home page', caption: 'Vendor Home' },
+        {
+          src: `${import.meta.env.BASE_URL}meats/home.png`,
+          alt: 'M-Eats restaurant home page',
+          caption: 'Restaurant Home',
+        },
+        {
+          src: `${import.meta.env.BASE_URL}meats/restaurants.png`,
+          alt: 'M-Eats restaurants list',
+          caption: 'Restaurant List',
+        },
+        {
+          src: `${import.meta.env.BASE_URL}meats/filter.png`,
+          alt: 'M-eats restaurants filter',
+          caption: 'Restaurant Filtering',
+        },
+        {
+          src: `${import.meta.env.BASE_URL}meats/review.png`,
+          alt: 'M-Eats review page',
+          caption: 'Review Submission',
+        },
+        {
+          src: `${import.meta.env.BASE_URL}meats/vendorpage.png`,
+          alt: 'M-eats Vendor home page',
+          caption: 'Vendor Home',
+        },
       ],
     },
     caseStudy: [
