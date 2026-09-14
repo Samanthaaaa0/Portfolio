@@ -1,8 +1,13 @@
-import { motion } from 'framer-motion'
-import { ExternalLink } from 'lucide-react'
+import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { Maximize2 } from 'lucide-react'
 import { projects } from '../data/resumeData'
+import ProjectModal from './ProjectModal'
 
 export default function Projects() {
+  const [openId, setOpenId] = useState<string | null>(null)
+  const openProject = projects.find((p) => p.id === openId) ?? null
+
   return (
     <section id="projects" className="relative px-6 py-28 sm:px-12 lg:px-24">
       <div className="mx-auto max-w-5xl">
@@ -22,7 +27,7 @@ export default function Projects() {
           transition={{ duration: 0.5, delay: 0.08 }}
           className="mt-3 max-w-xl font-body text-grey"
         >
-          A few windows into what I've been working on.
+          A few windows into what I've been working on. Click one to open it up.
         </motion.p>
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2">
@@ -37,14 +42,20 @@ export default function Projects() {
               className="overflow-hidden rounded-xl border border-grey-dim/40 bg-panel shadow-[6px_6px_0px_0px_rgba(255,111,176,0.15)]"
             >
               {/* window title bar */}
-              <div className="flex items-center justify-between border-b border-grey-dim/30 bg-panel2 px-4 py-2.5">
+              <button
+                onClick={() => setOpenId(p.id)}
+                aria-label={`Open ${p.title} details`}
+                className="flex w-full items-center justify-between border-b border-grey-dim/30 bg-panel2 px-4 py-2.5 text-left transition-colors hover:bg-panel2/70"
+              >
                 <div className="flex gap-1.5">
                   <span className="h-2.5 w-2.5 rounded-full bg-pink" />
                   <span className="h-2.5 w-2.5 rounded-full bg-pink-soft" />
                   <span className="h-2.5 w-2.5 rounded-full bg-turq" />
                 </div>
-                <span className="font-pixel text-base text-grey-dim">{p.period}</span>
-              </div>
+                <span className="flex items-center gap-1.5 font-pixel text-base text-grey-dim">
+                  {p.period} <Maximize2 size={12} />
+                </span>
+              </button>
 
               <div className="p-5 sm:p-6">
                 <div className="flex flex-wrap items-center gap-2">
@@ -71,26 +82,22 @@ export default function Projects() {
                 )}
 
                 <div className="mt-5">
-                  {p.link ? (
-                    <a
-                      href={p.link}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-1.5 font-body text-sm font-semibold text-pink hover:text-turq"
-                    >
-                      View project <ExternalLink size={14} />
-                    </a>
-                  ) : (
-                    <span className="inline-flex items-center gap-1.5 font-body text-xs italic text-grey-dim">
-                      link coming soon
-                    </span>
-                  )}
+                  <button
+                    onClick={() => setOpenId(p.id)}
+                    className="inline-flex items-center gap-1.5 font-body text-sm font-semibold text-pink hover:text-turq"
+                  >
+                    View details <Maximize2 size={14} />
+                  </button>
                 </div>
               </div>
             </motion.article>
           ))}
         </div>
       </div>
+
+      <AnimatePresence>
+        {openProject && <ProjectModal project={openProject} onClose={() => setOpenId(null)} />}
+      </AnimatePresence>
     </section>
   )
 }
