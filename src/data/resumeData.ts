@@ -1,4 +1,3 @@
-// All your resume content lives here — edit this file to update the whole site.
 
 export const profile = {
   name: 'Samantha Oh',
@@ -99,7 +98,6 @@ export type Project = {
   techList?: string[]
   blurb?: string
   github?: string
-  site?: ProjectLink
   thesis?: string
   demoGifs?: DemoGif[]
   caseStudy?: CaseStudySection[]
@@ -186,7 +184,6 @@ export const projects: Project[] = [
     techList: ['JavaScript', 'Node.js', 'Express.js', 'EJS', 'MongoDB Atlas', 'AWS S3', 'JWT', 'Twilio / SNS', 'HTML', 'CSS'],
     blurb:
       'Full-stack campus restaurant discovery platform with reviews, vendor accounts, JWT + OTP authentication, and S3-hosted images.',
-    site: { url: '', status: 'offline' }, // demo no longer live — shown as an inactive state in the popup
     proof: {
       note: 'The original deployment and repository are no longer publicly available. These screenshots show selected interfaces from the completed project.',
       images: [

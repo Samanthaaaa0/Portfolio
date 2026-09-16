@@ -20,7 +20,11 @@ export default function ScrollFadeSection({ children, root, className }: Props) 
     offset: ['start end', 'end start'],
   })
 
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.35, 1, 1, 0.35])
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.15, 0.85, 1],
+    [0.9, 1, 1, 0.9]
+  )
 
   return (
     <motion.div ref={ref} style={{ opacity }} className={className}>

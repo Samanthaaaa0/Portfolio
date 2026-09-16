@@ -13,7 +13,7 @@ export default function Footer() {
           transition={{ duration: 0.5 }}
           className="font-display text-4xl text-grey-light sm:text-5xl"
         >
-          Let's talk
+          Let's CONNECT!
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 16 }}

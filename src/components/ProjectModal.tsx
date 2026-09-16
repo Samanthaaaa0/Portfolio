@@ -113,17 +113,6 @@ export default function ProjectModal({ project, onClose }: Props) {
                 </a>
               )}
 
-              {hasSite && project.site!.status === 'offline' && (
-                <button
-                  disabled
-                  aria-disabled="true"
-                  title="This demo isn't live anymore"
-                  className="flex cursor-not-allowed items-center gap-2 rounded-full border border-grey-dim/50 px-5 py-2.5 font-body text-sm text-grey-dim"
-                >
-                  <Ban size={15} /> Demo no longer live
-                </button>
-              )}
-
               {hasGithub && (
                 <a
                   href={project.github}
@@ -181,7 +170,8 @@ export default function ProjectModal({ project, onClose }: Props) {
                   ))}
                 </div>
               </ScrollFadeSection>
-            ) : null}
+            ) : null}git add src/components/Footer.tsx src/components/ProjectModal.tsx src/components/ScrollFadeSection.tsx src/data/resumeData.ts src/index.css
+            
 
             {/* deep-dive case study sections */}
             {project.caseStudy?.map((section, i) => (
