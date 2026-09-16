@@ -99,6 +99,7 @@ export type Project = {
   blurb?: string
   github?: string
   thesis?: string
+  site?:ProjectLink
   demoGifs?: DemoGif[]
   caseStudy?: CaseStudySection[]
   proof?: ProofOfWork
